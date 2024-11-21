@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.DwiScoreMapper">
+
+
+    <select id="query_student_course_score" resultType="com.gcc.pojo.StudentCourseScore">
+        select bb.ExamId      exam_id,
+               aa.CourseCode  course_id,
+               aa.avgscore,
+               bb.score,
+               bb.UserNumber  student_id,
+               bb.title       exam_name,
+               bb.Submittedat exam_times
+        from (select c.CourseCode,
+                     avg(a.Score) avgscore
+
+              from dwi_exam_submission a
+                       join dwi_course_exam_activity c
+                            on c.id = a.ExamId
+                                and a.IsLatestversion = 1
+                                and a.SubmitMethod = 2
+              group by a.ExamId,
+                       c.CourseCode) aa
+                 join
+             (select a.ExamId,
+
+                     a.UserNumber,
+                     date_format(a.Submittedat, '%Y-%m-%d') Submittedat,
+                     c.CourseCode,
+                     c.Title,
+                     avg(a.Score)                           score
+              from dwi_exam_submission a
+                       join dwi_course_exam_activity c on c.id = a.ExamId
+                  and a.IsLatestversion = 1
+                  and a.SubmitMethod = 2
+
+              group by a.ExamId,
+                       a.UserNumber,
+                       date_format(a.Submittedat, '%Y-%m-%d'),
+                       c.CourseCode,
+                       c.Title) bb
+             on aa.CourseCode = bb.CourseCode
+        -- 	and aa.ExamId = bb.ExamId
+        order by bb.Submittedat desc;
+
+    </select>
+
+    <!-- 根据课程编码查询 总课时-->
+    <select id="queryCourse" resultType="com.gcc.pojo.DwiCourse">
+
+        select
+            distinct b.id,b.hours
+        from
+            dwi_student_course a join dwi_course  b
+            on a.coursecode = b.id
+        and
+            concat(a.semestercode, '-', a.coursecode, a.provinceschoolcode)= #{coursecode}
+    </select>
+
+
+    <select id="queryUserPersonalData" resultType="com.gcc.pojo.UserPersonalData">
+
+        select id as student_id,
+            name as user_name,
+            gender as user_gender,
+            TIMESTAMPDIFF(YEAR,DATE(birthday),CURDATE())  as age,
+            nation as nationality,
+            specialtycode as `degree`,
+            politicsofstatus political_status,
+            collegeschoolname graduate_institutions,
+            originalspecialty former_major,
+            timeofenrollment enrollmnent_data,
+            provinceschoolname education_background,
+            specialtyname major_admission,
+            status student_status,
+            mobilenumber phone_number,
+            email e_mail,
+            provinceschoolname institutional_framework
+ from dwi_student_status order by id limit #{page},#{limit}
+    </select>
+
+    <select id="queryTeacherCommentScore" resultType="com.gcc.pojo.TeacherCommentScore">
+        select
+        StudentNumber student_id,
+        InstructorComment instructor_comment,
+        (case
+        when InstructorComment = '' then 50
+        when InstructorComment is null then 50
+        else 100
+        end) comment_score
+        from
+        dwi_homework_score
+    </select>
+
+
+    <select id="queryHomeworkAvgScore" resultType="com.gcc.pojo.StudyEffect">
+        select
+            a.StudentNumber student_id,
+            b.Corusecode course_id,
+            IFNULL(avg(a.score),0)*0.5*0.01 score
+        from
+            dwi_homework_score a join dwi_homework_submission b on
+            a.StudentNumber = b.Usernumber
+        group by
+            a.StudentNumber, b.Corusecode
+    </select>
+
+
+    <select id="queryReplyCount" resultType="com.gcc.pojo.vo.VitalityVO">
+        select UserNumber student_id,count(1)*0.5 cnt  from dwi_reply dr
+        group by UserNumber order by count(1)*0.5 desc
+    </select>
+
+    <select id="queryHomework" resultType="com.gcc.pojo.vo.VitalityVO">
+        select
+            a.StudentNumber student_id,
+            b.Corusecode course_id,
+            avg(case
+                when Score is not null then score
+                when FinalScore is not null then FinalScore
+                else 0
+            end)
+        score
+
+        from
+            dwi_homework_score a
+        join dwi_homework_submission b on
+            a.StudentNumber = b.Usernumber
+            group by
+            a.StudentNumber ,
+            b.Corusecode
+    </select>
+
+    <select id="queryAllCourse" resultType="com.gcc.pojo.DwiCourse">
+
+        select
+            distinct b.id,b.hours,concat(a.semestercode, '-', a.coursecode, a.provinceschoolcode) course_id
+        from
+            dwi_student_course a join dwi_course  b
+            on a.coursecode = b.id
+    </select>
+
+
+    <select id="queryAllStudentCourse" resultType="com.gcc.pojo.DwiCourse">
+
+        select
+            distinct b.id,a.studentnumber student_id,b.hours,concat(a.semestercode, '-', a.coursecode, a.provinceschoolcode) course_id,b.name course_name
+        from
+            dwi_student_course a join dwi_course  b
+            on a.coursecode = b.id
+    </select>
+
+    <select id="queryCourseByStudentId" resultType="com.gcc.pojo.DwiCourse">
+
+        select
+            distinct a.studentnumber student_id,a.coursecode
+        from
+            dwi_student_course  a
+    </select>
+
+</mapper>

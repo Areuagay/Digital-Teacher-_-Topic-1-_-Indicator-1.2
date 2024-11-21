@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyEngagementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyEngagement">
+        <id column="student_id" property="studentId" />
+        <result column="course_id" property="courseId" />
+        <result column="engagement_score" property="engagementScore" />
+        <result column="avg_engagement_score" property="avgEngagementScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, engagement_score, avg_engagement_score
+    </sql>
+    <select id="getEngagementByUserId" resultType="com.gcc.pojo.StudyEngagement">
+        select * from `study_engagement` where student_id=#{student_id} and course_id=#{course_id}
+    </select>
+
+</mapper>

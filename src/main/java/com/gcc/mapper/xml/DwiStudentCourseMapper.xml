@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.DwiStudentCourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.DwiStudentCourse">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="studentNumber" column="studentnumber" jdbcType="VARCHAR"/>
+        <result property="semesterCode" column="semestercode" jdbcType="VARCHAR"/>
+        <result property="courseCode" column="coursecode" jdbcType="VARCHAR"/>
+        <result property="courseName" column="coursename" jdbcType="VARCHAR"/>
+        <result property="provinceSchoolCode" column="provinceschoolcode" jdbcType="VARCHAR"/>
+        <result property="collegeSchoolCode" column="collegeschoolcode" jdbcType="VARCHAR"/>
+        <result property="teachingSchoolCode" column="teachingschoolcode" jdbcType="VARCHAR"/>
+        <result property="selectCourseTime" column="selectcoursetime" jdbcType="VARCHAR"/>
+        <result property="credit" column="credit" jdbcType="FLOAT"/>
+        <result property="courseNature" column="coursenature" jdbcType="VARCHAR"/>
+        <result property="curriculumorganizationcode" column="curriculumorganizationcode" jdbcType="VARCHAR"/>
+        <result property="teachingTaskId" column="teachingtaskid" jdbcType="VARCHAR"/>
+        <result property="confirm" column="confirm" jdbcType="VARCHAR"/>
+        <result property="confirmTime" column="confirmtime" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="createTime" column="createtime" jdbcType="TIMESTAMP"/>
+        <result property="lastUpdate" column="lastupdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,studentnumber,semestercode,
+        coursecode,coursename,provinceschoolcode,
+        collegeschoolcode,teachingschoolcode,selectcoursetime,
+        credit,coursenature,curriculumorganizationcode,
+        teachingtaskid,confirm,confirmtime,
+        status,createtime,lastupdate
+    </sql>
+</mapper>

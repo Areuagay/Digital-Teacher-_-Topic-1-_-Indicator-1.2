@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.UserWordcloud1Mapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.UserWordcloud1">
+        <id column="student_id" property="studentId" />
+        <result column="wordcloud" property="wordCloud"/>
+        <result column="course_id" property="courseId" />
+    </resultMap>
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, wordcloud, course_id
+    </sql>
+    <insert id="insertWordCloud">
+        insert into `user_wordcloud1` (student_id, wordcloud, course_id) values (#{studentId}, #{wordCloud}, #{courseId})
+    </insert>
+    <select id="getWordCloudByUserId" resultType="com.gcc.pojo.UserWordcloud1">
+        select * from `user_wordcloud1` where student_id=#{student_id}
+    </select>
+
+</mapper>

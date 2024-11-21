@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.UserWordcloudWeightMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.UserWordcloudWeight">
+        <result column="study_total_progress_wordcloud_weight" property="studyTotalProgressWordcloudWeight" />
+        <result column="count_score_wordcloud_weight" property="countScoreWordcloudWeight" />
+        <result column="total_engagement_score_wordcloud_weight" property="totalEngagementScoreWordcloudWeight" />
+        <result column="comment_score_wordcloud_weight" property="commentScoreWordcloudWeight" />
+        <result column="score_wordcloud_weight" property="scoreWordcloudWeight" />
+        <result column="study_progress_wordcloud_weight" property="studyProgressWordcloudWeight" />
+        <result column="engagement_score_wordcloud_weight" property="engagementScoreWordcloudWeight" />
+        <result column="vitality_count_wordcount_weight" property="vitalityCountWordcountWeight" />
+        <result column="complication_score_wordcloud_weight" property="complicationScoreWordcloudWeight" />
+        <result column="knowledge_score_wordcloud_weight" property="knowledgeScoreWordcloudWeight" />
+        <result column="performance_score_wordcloud_weight" property="performanceScoreWordcloudWeight" />
+        <result column="ability_score_wordcloud_weight" property="abilityScoreWordcloudWeight" />
+        <result column="efficiency_score_wordcloud_weight" property="efficiencyScoreWordcloudWeight" />
+        <result column="city_weight" property="cityWeight" />
+        <result column="career_weight" property="careerWeight" />
+        <result column="hobby_weight" property="hobbyWeight" />
+        <result column="people_type_weight" property="peopleTypeWeight" />
+        <result column="emotion_weight" property="emotionWeight" />
+        <result column="character_weight" property="characterWeight" />
+        <result column="shopping_motivation_weight" property="shoppingMotivationWeight" />
+        <result column="constellation_weight" property="constellationWeight" />
+        <result column="phone_type_weight" property="phoneTypeWeight" />
+        <result column="age_weight" property="ageWeight" />
+        <result column="word1_weight" property="word1Weight" />
+        <result column="word2_weight" property="word2Weight" />
+        <result column="word3_weight" property="word3Weight" />
+        <result column="word4_weight" property="word4Weight" />
+        <result column="word5_weight" property="word5Weight" />
+        <result column="word6_weight" property="word6Weight" />
+        <result column="word7_weight" property="word7Weight" />
+        <result column="word8_weight" property="word8Weight" />
+        <result column="word9_weight" property="word9Weight" />
+        <result column="word10_weight" property="word10Weight" />
+        <result column="word11_weight" property="word11Weight" />
+        <result column="word12_weight" property="word12Weight" />
+        <result column="word13_weight" property="word13Weight" />
+        <result column="word14_weight" property="word14Weight" />
+        <result column="word15_weight" property="word15Weight" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        study_total_progress_wordcloud_weight, count_score_wordcloud_weight, total_engagement_score_wordcloud_weight, comment_score_wordcloud_weight, score_wordcloud_weight, study_progress_wordcloud_weight, engagement_score_wordcloud_weight, vitality_count_wordcount_weight, complication_score_wordcloud_weight, knowledge_score_wordcloud_weight, performance_score_wordcloud_weight, ability_score_wordcloud_weight, efficiency_score_wordcloud_weight, city_weight, career_weight, hobby_weight, people_type_weight, emotion_weight, character_weight, shopping_motivation_weight, constellation_weight, phone_type_weight, age_weight, word1_weight, word2_weight, word3_weight, word4_weight, word5_weight, word6_weight, word7_weight, word8_weight, word9_weight, word10_weight, word11_weight, word12_weight, word13_weight, word14_weight, word15_weight
+    </sql>
+
+</mapper>

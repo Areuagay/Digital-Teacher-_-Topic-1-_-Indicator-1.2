@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.DwiLearningActivitysMapper">
+    
+    <!--<resultMap type="DwiLearningActivitys" id="DwiLearningActivitysResult">-->
+        <!--<result property="activityId"    column="ActivityId"    />-->
+        <!--<result property="courseCode"    column="CourseCode"    />-->
+        <!--<result property="courseName"    column="CourseName"    />-->
+        <!--<result property="organizationCode"    column="OrganizationCode"    />-->
+        <!--<result property="organizationName"    column="OrganizationName"    />-->
+        <!--<result property="departmentCode"    column="DepartmentCode"    />-->
+        <!--<result property="activityType"    column="ActivityType"    />-->
+        <!--<result property="activityMode"    column="ActivityMode"    />-->
+        <!--<result property="activityAction"    column="ActivityAction"    />-->
+        <!--<result property="activitySource"    column="ActivitySource"    />-->
+        <!--<result property="startTime"    column="StartTime"    />-->
+        <!--<result property="endTime"    column="EndTime"    />-->
+        <!--<result property="ts"    column="Ts"    />-->
+        <!--<result property="userNumber"    column="UserNumber"    />-->
+        <!--<result property="userName"    column="UserName"    />-->
+        <!--<result property="createTime"    column="CreateTime"    />-->
+        <!--<result property="activityEnrollmentRole"    column="ActivityEnrollmentRole"    />-->
+        <!--<result property="day"    column="Day"    />-->
+    <!--</resultMap>-->
+
+    <insert id="batchInsert">
+        replace into dwi_learning_activitys(ActivityId, CourseCode, CourseName, OrganizationCode, OrganizationName, DepartmentCode, ActivityType, ActivityMode, ActivityAction, ActivitySource, StartTime, EndTime, Ts, UserNumber, UserName, CreateTime, ActivityEnrollmentRole, Day) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.activityId},#{item.courseCode},#{item.courseName},#{item.organizationCode},#{item.organizationName},#{item.departmentCode},
+            #{item.activityType},#{item.activityMode},#{item.activityAction},#{item.activitySource}
+            ,#{item.startTime},#{item.endTime},#{item.ts},#{item.userNumber},#{item.userName},#{item.createdAt},#{item.activityEnrollmentRole},
+            #{item.day}
+            )
+        </foreach>
+    </insert>
+
+
+	<!---->
+	<!--<sql id="selectDwiLearningActivitysVo">-->
+        <!--select ActivityId, CourseCode, CourseName, OrganizationCode, OrganizationName, DepartmentCode, ActivityType, ActivityMode, ActivityAction, ActivitySource, StartTime, EndTime, Ts, UserNumber, UserName, CreateTime, ActivityEnrollmentRole, Day from dwi_learning_activitys-->
+    <!--</sql>-->
+	<!---->
+    <!--<select id="selectDwiLearningActivitysList" parameterType="DwiLearningActivitys" resultMap="DwiLearningActivitysResult">-->
+        <!--<include refid="selectDwiLearningActivitysVo"/>-->
+        <!--<where>  -->
+            <!--<if test="activityId != null  and activityId != '' "> and ActivityId = #{activityId}</if>-->
+             <!--<if test="courseCode != null  and courseCode != '' "> and CourseCode = #{courseCode}</if>-->
+             <!--<if test="courseName != null  and courseName != '' "> and CourseName = #{courseName}</if>-->
+             <!--<if test="organizationCode != null  and organizationCode != '' "> and OrganizationCode = #{organizationCode}</if>-->
+             <!--<if test="organizationName != null  and organizationName != '' "> and OrganizationName = #{organizationName}</if>-->
+             <!--<if test="departmentCode != null  and departmentCode != '' "> and DepartmentCode = #{departmentCode}</if>-->
+             <!--<if test="activityType != null  and activityType != '' "> and ActivityType = #{activityType}</if>-->
+             <!--<if test="activityMode != null  and activityMode != '' "> and ActivityMode = #{activityMode}</if>-->
+             <!--<if test="activityAction != null  and activityAction != '' "> and ActivityAction = #{activityAction}</if>-->
+             <!--<if test="activitySource != null  and activitySource != '' "> and ActivitySource = #{activitySource}</if>-->
+             <!--<if test="startTime != null  and startTime != '' "> and StartTime = #{startTime}</if>-->
+             <!--<if test="endTime != null  and endTime != '' "> and EndTime = #{endTime}</if>-->
+             <!--<if test="ts != null  and ts != '' "> and Ts = #{ts}</if>-->
+             <!--<if test="userNumber != null  and userNumber != '' "> and UserNumber = #{userNumber}</if>-->
+             <!--<if test="userName != null  and userName != '' "> and UserName = #{userName}</if>-->
+             <!--<if test="createTime != null  and createTime != '' "> and CreateTime = #{createTime}</if>-->
+             <!--<if test="activityEnrollmentRole != null  and activityEnrollmentRole != '' "> and ActivityEnrollmentRole = #{activityEnrollmentRole}</if>-->
+             <!--<if test="day != null  and day != '' "> and Day = #{day}</if>-->
+         <!--</where>-->
+    <!--</select>-->
+    <!---->
+    <!--<select id="selectDwiLearningActivitysById" parameterType="String" resultMap="DwiLearningActivitysResult">-->
+        <!--<include refid="selectDwiLearningActivitysVo"/>-->
+        <!--where ActivityId = #{activityId}-->
+    <!--</select>-->
+        <!---->
+    <!--<insert id="insertDwiLearningActivitys" parameterType="DwiLearningActivitys">-->
+        <!--insert into dwi_learning_activitys-->
+		<!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+			<!--<if test="activityId != null  and activityId != ''  ">ActivityId,</if>-->
+			<!--<if test="courseCode != null  and courseCode != ''  ">CourseCode,</if>-->
+			<!--<if test="courseName != null  and courseName != ''  ">CourseName,</if>-->
+			<!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode,</if>-->
+			<!--<if test="organizationName != null  and organizationName != ''  ">OrganizationName,</if>-->
+			<!--<if test="departmentCode != null  and departmentCode != ''  ">DepartmentCode,</if>-->
+			<!--<if test="activityType != null  and activityType != ''  ">ActivityType,</if>-->
+			<!--<if test="activityMode != null  and activityMode != ''  ">ActivityMode,</if>-->
+			<!--<if test="activityAction != null  and activityAction != ''  ">ActivityAction,</if>-->
+			<!--<if test="activitySource != null  and activitySource != ''  ">ActivitySource,</if>-->
+			<!--<if test="startTime != null  and startTime != ''  ">StartTime,</if>-->
+			<!--<if test="endTime != null  and endTime != ''  ">EndTime,</if>-->
+			<!--<if test="ts != null  and ts != ''  ">Ts,</if>-->
+			<!--<if test="userNumber != null  and userNumber != ''  ">UserNumber,</if>-->
+			<!--<if test="userName != null  and userName != ''  ">UserName,</if>-->
+			<!--<if test="createTime != null  and createTime != ''  ">CreateTime,</if>-->
+			<!--<if test="activityEnrollmentRole != null  and activityEnrollmentRole != ''  ">ActivityEnrollmentRole,</if>-->
+			<!--<if test="day != null  and day != ''  ">Day,</if>-->
+         <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+			<!--<if test="activityId != null  and activityId != ''  ">#{activityId},</if>-->
+			<!--<if test="courseCode != null  and courseCode != ''  ">#{courseCode},</if>-->
+			<!--<if test="courseName != null  and courseName != ''  ">#{courseName},</if>-->
+			<!--<if test="organizationCode != null  and organizationCode != ''  ">#{organizationCode},</if>-->
+			<!--<if test="organizationName != null  and organizationName != ''  ">#{organizationName},</if>-->
+			<!--<if test="departmentCode != null  and departmentCode != ''  ">#{departmentCode},</if>-->
+			<!--<if test="activityType != null  and activityType != ''  ">#{activityType},</if>-->
+			<!--<if test="activityMode != null  and activityMode != ''  ">#{activityMode},</if>-->
+			<!--<if test="activityAction != null  and activityAction != ''  ">#{activityAction},</if>-->
+			<!--<if test="activitySource != null  and activitySource != ''  ">#{activitySource},</if>-->
+			<!--<if test="startTime != null  and startTime != ''  ">#{startTime},</if>-->
+			<!--<if test="endTime != null  and endTime != ''  ">#{endTime},</if>-->
+			<!--<if test="ts != null  and ts != ''  ">#{ts},</if>-->
+			<!--<if test="userNumber != null  and userNumber != ''  ">#{userNumber},</if>-->
+			<!--<if test="userName != null  and userName != ''  ">#{userName},</if>-->
+			<!--<if test="createTime != null  and createTime != ''  ">#{createTime},</if>-->
+			<!--<if test="activityEnrollmentRole != null  and activityEnrollmentRole != ''  ">#{activityEnrollmentRole},</if>-->
+			<!--<if test="day != null  and day != ''  ">#{day},</if>-->
+         <!--</trim>-->
+    <!--</insert>-->
+	 <!---->
+    <!--<update id="updateDwiLearningActivitys" parameterType="DwiLearningActivitys">-->
+        <!--update dwi_learning_activitys-->
+        <!--<trim prefix="SET" suffixOverrides=",">-->
+            <!--<if test="courseCode != null  and courseCode != ''  ">CourseCode = #{courseCode},</if>-->
+            <!--<if test="courseName != null  and courseName != ''  ">CourseName = #{courseName},</if>-->
+            <!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode = #{organizationCode},</if>-->
+            <!--<if test="organizationName != null  and organizationName != ''  ">OrganizationName = #{organizationName},</if>-->
+            <!--<if test="departmentCode != null  and departmentCode != ''  ">DepartmentCode = #{departmentCode},</if>-->
+            <!--<if test="activityType != null  and activityType != ''  ">ActivityType = #{activityType},</if>-->
+            <!--<if test="activityMode != null  and activityMode != ''  ">ActivityMode = #{activityMode},</if>-->
+            <!--<if test="activityAction != null  and activityAction != ''  ">ActivityAction = #{activityAction},</if>-->
+            <!--<if test="activitySource != null  and activitySource != ''  ">ActivitySource = #{activitySource},</if>-->
+            <!--<if test="startTime != null  and startTime != ''  ">StartTime = #{startTime},</if>-->
+            <!--<if test="endTime != null  and endTime != ''  ">EndTime = #{endTime},</if>-->
+            <!--<if test="ts != null  and ts != ''  ">Ts = #{ts},</if>-->
+            <!--<if test="userNumber != null  and userNumber != ''  ">UserNumber = #{userNumber},</if>-->
+            <!--<if test="userName != null  and userName != ''  ">UserName = #{userName},</if>-->
+            <!--<if test="createTime != null  and createTime != ''  ">CreateTime = #{createTime},</if>-->
+            <!--<if test="activityEnrollmentRole != null  and activityEnrollmentRole != ''  ">ActivityEnrollmentRole = #{activityEnrollmentRole},</if>-->
+            <!--<if test="day != null  and day != ''  ">Day = #{day},</if>-->
+        <!--</trim>-->
+        <!--where ActivityId = #{activityId}-->
+    <!--</update>-->
+
+	<!--<delete id="deleteDwiLearningActivitysById" parameterType="String">-->
+        <!--delete from dwi_learning_activitys where ActivityId = #{activityId}-->
+    <!--</delete>-->
+	<!---->
+    <!--<delete id="deleteDwiLearningActivitysByIds" parameterType="String">-->
+        <!--delete from dwi_learning_activitys where ActivityId in -->
+        <!--<foreach item="activityId" collection="array" open="(" separator="," close=")">-->
+            <!--#{activityId}-->
+        <!--</foreach>-->
+    <!--</delete>-->
+    
+</mapper>

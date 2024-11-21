@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudentVitalityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudentVitality">
+        <id column="student_id" property="studentId"/>
+        <result column="course_id" property="courseId"/>
+        <result column="vitality_count" property="vitalityCount"/>
+        <result column="avg_vitality_count" property="avgVitalityCount"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, vitality_count, avg_vitality_count
+    </sql>
+    <select id="getVitalityByUserId" resultType="com.gcc.pojo.StudentVitality">
+        select *
+        from `student_vitality`
+        where student_id = #{student_id}
+          and course_id = #{course_id}
+    </select>
+
+    <insert id="syncStudentVitality">
+        replace into student_vitality(student_id, course_id, vitality_count, avg_vitality_count)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.vitalityCount},#{item.avgVitalityCount}
+            )
+        </foreach>
+
+    </insert>
+    <insert id="batchInsert">
+        replace into student_vitality(student_id, course_id, vitality_count, avg_vitality_count)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.vitalityCount},#{item.avgVitalityCount})
+        </foreach>
+    </insert>
+</mapper>

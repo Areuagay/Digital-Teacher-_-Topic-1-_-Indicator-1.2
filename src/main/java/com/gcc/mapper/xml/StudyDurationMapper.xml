@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyDurationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyDuration">
+        <id column="student_id" property="studentId" />
+        <id column="course_id" property="courseId" />
+        <result column="video_watch_score" property="videoWatchScore" />
+        <result column="file_watch_score" property="fileWatchScore" />
+        <result column="test_time_score" property="testTimeScore" />
+        <result column="discussion_score" property="discussionScore" />
+        <result column="examination_time_score" property="examinationTimeScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id,video_watch_score, file_watch_score, test_time_score, discussion_score, examination_time_score
+    </sql>
+    <insert id="insertStudentDuration">
+        insert into `study_duration` (student_id, course_id, video_watch_score, file_watch_score, test_time_score,
+                                      discussion_score, examination_time_score)
+        values (#{studentId}, #{courseId}, #{videoWatchScore}, #{fileWatchScore}, #{testTimeScore}, #{discussionScore},
+                #{examinationTimeScore})
+    </insert>
+    <select id="getStudyDurationByUserId" resultType="com.gcc.pojo.StudyDuration">
+        select *
+        from `study_duration`
+        where student_id = #{student_id}
+          and course_id = #{course_id}
+    </select>
+    <select id="selectMaxDiscussion" resultType="java.lang.Long">
+        SELECT MAX(CONVERT(discussion_score, DOUBLE))
+        FROM study_duration
+        where course_id = #{courseId};
+    </select>
+
+
+</mapper>

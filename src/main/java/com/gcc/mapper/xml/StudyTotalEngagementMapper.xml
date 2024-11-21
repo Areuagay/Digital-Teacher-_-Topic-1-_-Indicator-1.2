@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyTotalEngagementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyTotalEngagement">
+        <id column="student_id" property="studentId" />
+        <result column="total_engagement_score" property="totalEngagementScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, total_engagement_score
+    </sql>
+    <select id="getTotalEngagementByUserId" resultType="com.gcc.pojo.StudyTotalEngagement">
+        select * from `study_total_engagement` where student_id=#{student_id}
+    </select>
+</mapper>

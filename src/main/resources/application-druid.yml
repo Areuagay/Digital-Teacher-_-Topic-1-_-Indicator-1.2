@@ -1,0 +1,80 @@
+
+# 数据源配置
+
+spring:
+    datasource:
+        dynamic:
+            primary: master #设置默认的数据源或者数据源组,默认值即为master
+            strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+            datasource:
+                master:
+                    url: jdbc:mysql://114.116.206.56:13306/user_prof_fake?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                    username: root
+                    password: issgtot2osXqierr4P
+                    driver-class-name: com.mysql.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
+                slave_1:
+                    url: jdbc:mysql://114.116.206.56:13306/push?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                    username: root
+                    password: Vj3ts_f5jwtuglwQor
+                    driver-class-name: com.mysql.jdbc.Driver
+                slave_2:
+                    url: jdbc:mysql://114.116.206.56:13306/irt?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                    username: root
+                    password: oilsotbPcaq_4eaiklX2
+                    driver-class-name: com.mysql.jdbc.Driver
+#                master:
+#                    url: jdbc:mysql://120.46.140.52:3306/user_prof_fake?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+#                    username: root
+#                    password: pass
+#                    driver-class-name: com.mysql.jdbc.Driver
+#                slave_1:
+#                    url: jdbc:mysql://120.46.140.52:3306/push?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+#                    username: root
+#                    password: pass
+#                    driver-class-name: com.mysql.jdbc.Driver
+#                slave_2:
+#                    url: jdbc:mysql://120.46.140.52:3306/?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+#                    username: root
+#                    password: pass
+#                    driver-class-name: com.mysql.jdbc.Driver
+
+
+
+    kafka:
+        bootstrap-servers: 10.25.2.227:9092,10.25.2.80:9092,10.25.2.12:9092
+        producer: # producer 生产者
+            retries: 0 # 重试次数
+            acks: 1 # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+            batch-size: 100000 # 批量处理的最大大小 单位 byte
+            buffer-memory: 33554432 # 生产端缓冲区大小
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        consumer: # consumer消费者
+            group-id: group1 # 默认的消费组ID
+            enable-auto-commit: false # 是否自动提交offset
+            #auto-commit-interval: 100  # 提交offset延时(接收到消息后多久提交offset)
+            # earliest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+            # latest:当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，消费新产生的该分区下的数据
+            # none:topic各分区都存在已提交的offset时，从offset后开始消费；只要有一个分区不存在已提交的offset，则抛出异常
+            auto-offset-reset: earliest
+            max-poll-records: 1000   #批量消费每次最多消费多少条消息
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        listener:
+            enable-auto-commit: false
+            ack-mode: manual_immediate
+            max-poll-records: 1000
+            # 消费者监听的topic不存在时，项目会报错，设置为false
+            missing-topics-fatal: false
+            type: batch
+
+http:
+    maxTotal: 100         #最大连接数
+    defaultMaxPerRoute: 20  #并发数
+    connectTimeout: 1000   #创建连接的最长时间
+    connectionRequestTimeout: 500  #从连接池中获取到连接的最长时间
+    socketTimeout: 10000 #数据传输的最长时间
+    staleConnectionCheckEnabled: true  #提交请求前测试连接是否可用
+    validateAfterInactivity: 3000000   #可用空闲连接过期时间,重用空闲连接时会先检查是否空闲时间超过这个时间，如果超过，释放socket重新建立
+    teacher-url: http://120.46.140.52:5000/
+    cloud-url: http://120.46.140.52:5000/cold_start_wordcloud

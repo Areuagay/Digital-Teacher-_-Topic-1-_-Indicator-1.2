@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudentCourseCountScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudentCourseCountScore">
+        <id column="student_id" property="studentId"/>
+        <result column="count_score" property="countScore"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, count_score
+    </sql>
+    <select id="queryAvgScoreById" resultType="com.gcc.pojo.StudentCourseCountScore">
+        select * from `student_course_count_score` where student_id=#{student_id}
+    </select>
+
+    <select id="queryStudyComplication" resultType="com.gcc.pojo.StudyComplication">
+        select a.UserCode student_id,a.CourseCode course_id,b.count_score*0.5*0.01 count_score, ifnull(sum(a.Duration/60/60),0) score
+        from dwi_playback_record_video_resources a
+        join student_course_count_score b
+        on a.UserCode = b.student_id
+        group by a.UserCode,a.CourseCode,b.count_score
+    </select>
+
+
+    <insert id="syncStudyComplication">
+        replace into study_complication(student_id, course_id, complication_score, avg_complication_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.complicationScore},#{item.avgComplicationScore}
+            )
+        </foreach>
+
+    </insert>
+
+
+    <select id="queryStudentCountScore" resultType="com.gcc.pojo.StudentCourseCountScore">
+        select student_id,IFNULL(avg(count_score),0)*0.5*0.01 count_score from `student_course_count_score`
+    </select>
+
+
+    <select id="queryStudyReport" resultType="com.gcc.pojo.vo.StudyReport">
+        select a.UserCode student_id,a.CourseCode course_id,ifnull(b.count_score,0) exam_score , ifnull(sum(a.Duration/60/60),0) total_hours
+        from dwi_playback_record_video_resources a
+        join student_course_count_score b
+        on a.UserCode = b.student_id
+        group by a.UserCode,a.CourseCode,b.count_score
+    </select>
+
+
+    <insert id="syncProgress">
+        replace into student_progress(student_id, course_id, study_progress, avg_progress)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.studyProgress},#{item.avgProgress}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="syncStudyEngagement">
+        replace into study_engagement(student_id, course_id, engagement_score, avg_engagement_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.engagementScore},#{item.avgEngagementScore}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="syncStudyDuration">
+        replace into study_duration(student_id, course_id, video_watch_score, file_watch_score, test_time_score,
+        discussion_score, examination_time_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.studentId},#{item.courseId},#{item.videoWatchScore},#{item.fileWatchScore},#{item.testTimeScore},
+            #{item.discussionScore},#{item.examinationTimeScore}
+            )
+        </foreach>
+
+    </insert>
+
+
+    <insert id="syncEffect">
+        replace into study_effect(student_id, course_id,performance_score, avg_performance_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.studentId},#{item.courseId},#{item.performanceScore},#{item.avgPerformanceScore}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="queryStudyEfficience" resultType="com.gcc.pojo.vo.StudyReport">
+        select a.student_id ,ifnull(a.count_score,0) exam_score,ifnull(b.total_hours,0) total_hours
+        from student_course_count_score a left join study_total_duration b on a.student_id = b.student_id
+    </select>
+
+    <insert id="syncStudyEfficience">
+        replace into study_efficiency(student_id, course_id,efficiency_score, avg_efficiency_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.studentId},#{item.courseId},#{item.efficiencyScore},#{item.avgEfficiencyScore}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="syncUserWordCloud1">
+        replace into user_wordcloud1(student_id, course_id,wordcloud)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.studentId},#{item.courseId},#{item.wordcloud}
+            )
+        </foreach>
+
+    </insert>
+
+
+    <insert id="syncStudentCourseRelationship">
+        delete from student_course_relationship;
+        insert into student_course_relationship(student_id, course_id,course_name)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.studentId},#{item.courseId},#{item.courseName}
+            )
+        </foreach>
+
+    </insert>
+
+</mapper>

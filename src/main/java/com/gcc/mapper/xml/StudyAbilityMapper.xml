@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyAbilityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyAbility">
+        <id column="student_id" property="studentId"/>
+        <result column="course_id" property="courseId"/>
+        <result column="ability_score" property="abilityScore"/>
+        <result column="avg_ability_score" property="avgAbilityScore"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, ability_score, avg_ability_score
+    </sql>
+    <select id="getAbilityByUserId" resultType="com.gcc.pojo.StudyAbility">
+        select * from user_prof_fake.study_ability where student_id=#{student_id} and course_id=#{course_id}
+    </select>
+
+
+    <select id="queryCourseKnowledge" resultType="com.gcc.pojo.KnowledgeComplication">
+
+        SELECT
+         knowledge_course course_id,count(1) score
+        FROM ie52.course_knowledge
+            group by knowledge_course
+    </select>
+
+    <select id="queryStuCourseKnowledge" resultType="com.gcc.pojo.KnowledgeComplication">
+
+
+        SELECT UserId student_id, left(KnowledgeId,5) course_id , count(1) score
+        FROM mydb.user_knowledge_learning_process
+        where LearningProcess ='completed'
+        group by
+
+        UserId, left(KnowledgeId,5)
+    </select>
+
+
+    <select id="getAllAbility" resultType="com.gcc.pojo.StudyAbility">
+        select
+            user_id student_id,
+            course_id,
+            avg(ability) ability_score,
+            (
+            select
+                avg(ability)
+            from
+                irt.ability) avg_ability_score
+        from
+            irt.ability
+        group by
+            user_id,course_id
+    </select>
+
+
+</mapper>

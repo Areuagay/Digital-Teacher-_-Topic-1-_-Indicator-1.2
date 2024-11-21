@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.DwiUserVisitMapper">
+
+    <insert id="batchInsert">
+        replace into dwi_user_visit(ActivityId, ActionType, ActivityType, Browser, CourseCode, CourseName, GroupId, IsMobile, IsTeacher, OrganizationCode, OrganizationName, UserName, UserNumber, VisitDuration, Role, Day, CreateTime) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.activityId},#{item.actionType},#{item.activityType},#{item.browser},#{item.courseCode},#{item.courseName},
+            #{item.groupId},#{item.isMobile},#{item.isTeacher},#{item.organizationCode}
+            ,#{item.organizationName},#{item.userName},#{item.userNumber},#{item.visitDuration},#{item.role},#{item.day},#{item.createdAt}
+            )
+        </foreach>
+    </insert>
+
+    <!--<resultMap type="DwiUserVisit" id="DwiUserVisitResult">-->
+        <!--<result property="activityId"    column="ActivityId"    />-->
+        <!--<result property="actionType"    column="ActionType"    />-->
+        <!--<result property="activityType"    column="ActivityType"    />-->
+        <!--<result property="browser"    column="Browser"    />-->
+        <!--<result property="courseCode"    column="CourseCode"    />-->
+        <!--<result property="courseName"    column="CourseName"    />-->
+        <!--<result property="groupId"    column="GroupId"    />-->
+        <!--<result property="isMobile"    column="IsMobile"    />-->
+        <!--<result property="isTeacher"    column="IsTeacher"    />-->
+        <!--<result property="organizationCode"    column="OrganizationCode"    />-->
+        <!--<result property="organizationName"    column="OrganizationName"    />-->
+        <!--<result property="userName"    column="UserName"    />-->
+        <!--<result property="userNumber"    column="UserNumber"    />-->
+        <!--<result property="visitDuration"    column="VisitDuration"    />-->
+        <!--<result property="role"    column="Role"    />-->
+        <!--<result property="day"    column="Day"    />-->
+        <!--<result property="createTime"    column="CreateTime"    />-->
+    <!--</resultMap>-->
+	<!---->
+	<!--<sql id="selectDwiUserVisitVo">-->
+        <!--select ActivityId, ActionType, ActivityType, Browser, CourseCode, CourseName, GroupId, IsMobile, IsTeacher, OrganizationCode, OrganizationName, UserName, UserNumber, VisitDuration, Role, Day, CreateTime from dwi_user_visit-->
+    <!--</sql>-->
+	<!---->
+    <!--<select id="selectDwiUserVisitList" parameterType="DwiUserVisit" resultMap="DwiUserVisitResult">-->
+        <!--<include refid="selectDwiUserVisitVo"/>-->
+        <!--<where>  -->
+            <!--<if test="activityId != null  and activityId != '' "> and ActivityId = #{activityId}</if>-->
+             <!--<if test="actionType != null  and actionType != '' "> and ActionType = #{actionType}</if>-->
+             <!--<if test="activityType != null  and activityType != '' "> and ActivityType = #{activityType}</if>-->
+             <!--<if test="browser != null  and browser != '' "> and Browser = #{browser}</if>-->
+             <!--<if test="courseCode != null  and courseCode != '' "> and CourseCode = #{courseCode}</if>-->
+             <!--<if test="courseName != null  and courseName != '' "> and CourseName = #{courseName}</if>-->
+             <!--<if test="groupId != null  and groupId != '' "> and GroupId = #{groupId}</if>-->
+             <!--<if test="isMobile != null  and isMobile != '' "> and IsMobile = #{isMobile}</if>-->
+             <!--<if test="isTeacher != null  and isTeacher != '' "> and IsTeacher = #{isTeacher}</if>-->
+             <!--<if test="organizationCode != null  and organizationCode != '' "> and OrganizationCode = #{organizationCode}</if>-->
+             <!--<if test="organizationName != null  and organizationName != '' "> and OrganizationName = #{organizationName}</if>-->
+             <!--<if test="userName != null  and userName != '' "> and UserName = #{userName}</if>-->
+             <!--<if test="userNumber != null  and userNumber != '' "> and UserNumber = #{userNumber}</if>-->
+             <!--<if test="visitDuration != null  and visitDuration != '' "> and VisitDuration = #{visitDuration}</if>-->
+             <!--<if test="role != null  and role != '' "> and Role = #{role}</if>-->
+             <!--<if test="day != null  and day != '' "> and Day = #{day}</if>-->
+             <!--<if test="createTime != null  and createTime != '' "> and CreateTime = #{createTime}</if>-->
+         <!--</where>-->
+    <!--</select>-->
+    <!---->
+    <!--<select id="selectDwiUserVisitById" parameterType="String" resultMap="DwiUserVisitResult">-->
+        <!--<include refid="selectDwiUserVisitVo"/>-->
+        <!--where ActivityId = #{activityId}-->
+    <!--</select>-->
+        <!---->
+    <!--<insert id="insertDwiUserVisit" parameterType="DwiUserVisit">-->
+        <!--insert into dwi_user_visit-->
+		<!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+			<!--<if test="activityId != null  and activityId != ''  ">ActivityId,</if>-->
+			<!--<if test="actionType != null  and actionType != ''  ">ActionType,</if>-->
+			<!--<if test="activityType != null  and activityType != ''  ">ActivityType,</if>-->
+			<!--<if test="browser != null  and browser != ''  ">Browser,</if>-->
+			<!--<if test="courseCode != null  and courseCode != ''  ">CourseCode,</if>-->
+			<!--<if test="courseName != null  and courseName != ''  ">CourseName,</if>-->
+			<!--<if test="groupId != null  and groupId != ''  ">GroupId,</if>-->
+			<!--<if test="isMobile != null  and isMobile != ''  ">IsMobile,</if>-->
+			<!--<if test="isTeacher != null  and isTeacher != ''  ">IsTeacher,</if>-->
+			<!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode,</if>-->
+			<!--<if test="organizationName != null  and organizationName != ''  ">OrganizationName,</if>-->
+			<!--<if test="userName != null  and userName != ''  ">UserName,</if>-->
+			<!--<if test="userNumber != null  and userNumber != ''  ">UserNumber,</if>-->
+			<!--<if test="visitDuration != null  and visitDuration != ''  ">VisitDuration,</if>-->
+			<!--<if test="role != null  and role != ''  ">Role,</if>-->
+			<!--<if test="day != null  and day != ''  ">Day,</if>-->
+			<!--<if test="createTime != null  and createTime != ''  ">CreateTime,</if>-->
+         <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+			<!--<if test="activityId != null  and activityId != ''  ">#{activityId},</if>-->
+			<!--<if test="actionType != null  and actionType != ''  ">#{actionType},</if>-->
+			<!--<if test="activityType != null  and activityType != ''  ">#{activityType},</if>-->
+			<!--<if test="browser != null  and browser != ''  ">#{browser},</if>-->
+			<!--<if test="courseCode != null  and courseCode != ''  ">#{courseCode},</if>-->
+			<!--<if test="courseName != null  and courseName != ''  ">#{courseName},</if>-->
+			<!--<if test="groupId != null  and groupId != ''  ">#{groupId},</if>-->
+			<!--<if test="isMobile != null  and isMobile != ''  ">#{isMobile},</if>-->
+			<!--<if test="isTeacher != null  and isTeacher != ''  ">#{isTeacher},</if>-->
+			<!--<if test="organizationCode != null  and organizationCode != ''  ">#{organizationCode},</if>-->
+			<!--<if test="organizationName != null  and organizationName != ''  ">#{organizationName},</if>-->
+			<!--<if test="userName != null  and userName != ''  ">#{userName},</if>-->
+			<!--<if test="userNumber != null  and userNumber != ''  ">#{userNumber},</if>-->
+			<!--<if test="visitDuration != null  and visitDuration != ''  ">#{visitDuration},</if>-->
+			<!--<if test="role != null  and role != ''  ">#{role},</if>-->
+			<!--<if test="day != null  and day != ''  ">#{day},</if>-->
+			<!--<if test="createTime != null  and createTime != ''  ">#{createTime},</if>-->
+         <!--</trim>-->
+    <!--</insert>-->
+	 <!---->
+    <!--<update id="updateDwiUserVisit" parameterType="DwiUserVisit">-->
+        <!--update dwi_user_visit-->
+        <!--<trim prefix="SET" suffixOverrides=",">-->
+            <!--<if test="actionType != null  and actionType != ''  ">ActionType = #{actionType},</if>-->
+            <!--<if test="activityType != null  and activityType != ''  ">ActivityType = #{activityType},</if>-->
+            <!--<if test="browser != null  and browser != ''  ">Browser = #{browser},</if>-->
+            <!--<if test="courseCode != null  and courseCode != ''  ">CourseCode = #{courseCode},</if>-->
+            <!--<if test="courseName != null  and courseName != ''  ">CourseName = #{courseName},</if>-->
+            <!--<if test="groupId != null  and groupId != ''  ">GroupId = #{groupId},</if>-->
+            <!--<if test="isMobile != null  and isMobile != ''  ">IsMobile = #{isMobile},</if>-->
+            <!--<if test="isTeacher != null  and isTeacher != ''  ">IsTeacher = #{isTeacher},</if>-->
+            <!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode = #{organizationCode},</if>-->
+            <!--<if test="organizationName != null  and organizationName != ''  ">OrganizationName = #{organizationName},</if>-->
+            <!--<if test="userName != null  and userName != ''  ">UserName = #{userName},</if>-->
+            <!--<if test="userNumber != null  and userNumber != ''  ">UserNumber = #{userNumber},</if>-->
+            <!--<if test="visitDuration != null  and visitDuration != ''  ">VisitDuration = #{visitDuration},</if>-->
+            <!--<if test="role != null  and role != ''  ">Role = #{role},</if>-->
+            <!--<if test="day != null  and day != ''  ">Day = #{day},</if>-->
+            <!--<if test="createTime != null  and createTime != ''  ">CreateTime = #{createTime},</if>-->
+        <!--</trim>-->
+        <!--where ActivityId = #{activityId}-->
+    <!--</update>-->
+
+	<!--<delete id="deleteDwiUserVisitById" parameterType="String">-->
+        <!--delete from dwi_user_visit where ActivityId = #{activityId}-->
+    <!--</delete>-->
+	<!---->
+    <!--<delete id="deleteDwiUserVisitByIds" parameterType="String">-->
+        <!--delete from dwi_user_visit where ActivityId in -->
+        <!--<foreach item="activityId" collection="array" open="(" separator="," close=")">-->
+            <!--#{activityId}-->
+        <!--</foreach>-->
+    <!--</delete>-->
+    
+</mapper>

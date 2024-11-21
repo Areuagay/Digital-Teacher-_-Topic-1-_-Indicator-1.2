@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyEfficiencyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyEfficiency">
+        <id column="student_id" property="studentId" />
+        <result column="course_id" property="courseId" />
+        <result column="efficiency_score" property="efficiencyScore" />
+        <result column="avg_efficiency_score" property="avgEfficiencyScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, efficiency_score, avg_efficiency_score
+    </sql>
+    <insert id="batchInsert">
+        replace into `study_efficiency` (student_id, course_id, efficiency_score, avg_efficiency_score) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.studentId}, #{item.courseId}, #{item.efficiencyScore}, #{item.avgEfficiencyScore})
+        </foreach>
+    </insert>
+    <select id="getEfficiencyByUserId" resultType="com.gcc.pojo.StudyEfficiency">
+        select * from `study_efficiency` where student_id=#{student_id} and course_id=#{course_id}
+    </select>
+</mapper>

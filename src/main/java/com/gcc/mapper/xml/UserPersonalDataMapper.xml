@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.UserPersonalDataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.UserPersonalData">
+        <id column="student_id" property="studentId" />
+        <result column="user_name" property="userName" />
+        <result column="user_gender" property="userGender" />
+        <result column="age" property="age" />
+        <result column="user_city" property="userCity" />
+        <result column="degree" property="degree" />
+        <result column="career" property="career" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, user_name, user_gender, age, user_city, degree, career
+    </sql>
+    <select id="getPersonInfoByUserId" resultType="com.gcc.pojo.UserPersonalData">
+        select * from `user_personal_data` where student_id=#{student_id}
+    </select>
+
+
+    <select id="getStudentCourseByUserId" resultType="com.gcc.pojo.StudentCourseRelationship">
+        select * from `student_course_relationship` where student_id=#{student_id}
+    </select>
+
+
+
+</mapper>

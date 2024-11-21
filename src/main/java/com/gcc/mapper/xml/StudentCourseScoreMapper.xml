@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudentCourseScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudentCourseScore">
+        <id column="exam_id" property="examId" />
+        <result column="student_id" property="student_id" />
+        <result column="course_id" property="course_id" />
+        <result column="score" property="score" />
+        <result column="exam_name" property="examName" />
+        <result column="avgscore" property="avgscore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        exam_id, student_id,course_id, score, exam_name, avgscore
+    </sql>
+    <update id="batchInsert">
+        insert into `student_course_score` (exam_id, student_id, course_id, score, exam_name, avgscore, exam_times)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.examId}, #{item.studentId}, #{item.courseId}, #{item.score}, #{item.examName}, #{item.avgscore},
+            #{item.examTimes})
+        </foreach>
+    </update>
+    <select id="getSingleCourseAvgScore" resultType="com.gcc.pojo.StudentCourseScore">
+        select * from `student_course_score` where student_id=#{student_id} and course_id=#{course_id}
+    </select>
+    <select id="selectFromDwi" resultType="com.gcc.pojo.StudentCourseScore">
+        SELECT e.id                                              AS exam_id,
+               s.UserNumber                                      AS student_id,
+               e.Title                                           AS exam_name,
+               CONCAT_WS(
+                       '-',
+                       e.SemesterCode,
+                       CONCAT(e.CourseCode, e.OrganizationCode)) AS course_id,
+               s.Score                                           AS score,
+               s.Submittedat                                     AS exam_times,
+               AVG(s.Score)                                      AS avgscore
+        FROM dwi_course_exam_activity e
+                 JOIN dwi_exam_submission s ON e.id = s.ExamId
+        GROUP BY e.Id
+    </select>
+</mapper>

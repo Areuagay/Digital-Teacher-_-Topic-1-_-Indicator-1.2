@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.DwiPlaybackRecordVideoResourcesMapper">
+
+    <!--<resultMap type="DwiPlaybackRecordVideoResources" id="DwiPlaybackRecordVideoResourcesResult">-->
+    <!--<result property="id" column="Id"/>-->
+    <!--<result property="userNumber" column="UserNumber"/>-->
+    <!--<result property="userCode" column="UserCode"/>-->
+    <!--<result property="organizationId" column="OrganizationId"/>-->
+    <!--<result property="organizationCode" column="OrganizationCode"/>-->
+    <!--<result property="departmentId" column="DepartmentId"/>-->
+    <!--<result property="departmentCode" column="DepartmentCode"/>-->
+    <!--<result property="courseId" column="CourseId"/>-->
+    <!--<result property="courseCode" column="CourseCode"/>-->
+    <!--<result property="courseName" columnsync_student_course_score="CourseName"/>-->
+    <!--<result property="moduleId" column="ModuleId"/>-->
+    <!--<result property="syllabusId" column="SyllabusId"/>-->
+    <!--<result property="activityId" column="ActivityId"/>-->
+    <!--<result property="duration" column="Duration"/>-->
+    <!--<result property="isMobile" column="IsMobile"/>-->
+    <!--<result property="isTeacher" column="IsTeacher"/>-->
+    <!--<result property="actionType" column="ActionType"/>-->
+    <!--<result property="uploadId" column="UploadId"/>-->
+    <!--<result property="startTime" column="StartTime"/>-->
+    <!--<result property="endTime" column="EndTime"/>-->
+    <!--<result property="createTime" column="CreateTime"/>-->
+    <!--</resultMap>-->
+
+    <!--<sql id="selectDwiPlaybackRecordVideoResourcesVo">-->
+    <!--select Id, UserNumber, UserCode, OrganizationId, OrganizationCode, DepartmentId, DepartmentCode, CourseId, CourseCode, CourseName, ModuleId, SyllabusId, ActivityId, Duration, IsMobile, IsTeacher, ActionType, UploadId, StartTime, EndTime, CreateTime from dwi_playback_record_video_resources-->
+    <!--</sql>-->
+
+    <!--<select id="selectDwiPlaybackRecordVideoResourcesList" parameterType="DwiPlaybackRecordVideoResources"-->
+    <!--resultMap="DwiPlaybackRecordVideoResourcesResult">-->
+    <!--<include refid="selectDwiPlaybackRecordVideoResourcesVo"/>-->
+    <!--<where>-->
+    <!--<if test="id != null  and id != '' ">and Id = #{id}</if>-->
+    <!--<if test="userNumber != null  and userNumber != '' ">and UserNumber = #{userNumber}</if>-->
+    <!--<if test="userCode != null  and userCode != '' ">and UserCode = #{userCode}</if>-->
+    <!--<if test="organizationId != null  and organizationId != '' ">and OrganizationId = #{organizationId}</if>-->
+    <!--<if test="organizationCode != null  and organizationCode != '' ">and OrganizationCode =-->
+    <!--#{organizationCode}-->
+    <!--</if>-->
+    <!--<if test="departmentId != null  and departmentId != '' ">and DepartmentId = #{departmentId}</if>-->
+    <!--<if test="departmentCode != null  and departmentCode != '' ">and DepartmentCode = #{departmentCode}</if>-->
+    <!--<if test="courseId != null  and courseId != '' ">and CourseId = #{courseId}</if>-->
+    <!--<if test="courseCode != null  and courseCode != '' ">and CourseCode = #{courseCode}</if>-->
+    <!--<if test="courseName != null  and courseName != '' ">and CourseName = #{courseName}</if>-->
+    <!--<if test="moduleId != null  and moduleId != '' ">and ModuleId = #{moduleId}</if>-->
+    <!--<if test="syllabusId != null  and syllabusId != '' ">and SyllabusId = #{syllabusId}</if>-->
+    <!--<if test="activityId != null  and activityId != '' ">and ActivityId = #{activityId}</if>-->
+    <!--<if test="duration != null  and duration != '' ">and Duration = #{duration}</if>-->
+    <!--<if test="isMobile != null  and isMobile != '' ">and IsMobile = #{isMobile}</if>-->
+    <!--<if test="isTeacher != null  and isTeacher != '' ">and IsTeacher = #{isTeacher}</if>-->
+    <!--<if test="actionType != null  and actionType != '' ">and ActionType = #{actionType}</if>-->
+    <!--<if test="uploadId != null  and uploadId != '' ">and UploadId = #{uploadId}</if>-->
+    <!--<if test="startTime != null  and startTime != '' ">and StartTime = #{startTime}</if>-->
+    <!--<if test="endTime != null  and endTime != '' ">and EndTime = #{endTime}</if>-->
+    <!--<if test="createTime != null  and createTime != '' ">and CreateTime = #{createTime}</if>-->
+    <!--</where>-->
+    <!--</select>-->
+
+    <!--<select id="selectDwiPlaybackRecordVideoResourcesById" parameterType="String"-->
+    <!--resultMap="DwiPlaybackRecordVideoResourcesResult">-->
+    <!--<include refid="selectDwiPlaybackRecordVideoResourcesVo"/>-->
+    <!--where Id = #{id}-->
+    <!--</select>-->
+
+    <!--<insert id="insertDwiPlaybackRecordVideoResources" parameterType="DwiPlaybackRecordVideoResources">-->
+    <!--insert into dwi_playback_record_video_resources-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null  and id != ''  ">Id,</if>-->
+    <!--<if test="userNumber != null  and userNumber != ''  ">UserNumber,</if>-->
+    <!--<if test="userCode != null  and userCode != ''  ">UserCode,</if>-->
+    <!--<if test="organizationId != null  and organizationId != ''  ">OrganizationId,</if>-->
+    <!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode,</if>-->
+    <!--<if test="departmentId != null  and departmentId != ''  ">DepartmentId,</if>-->
+    <!--<if test="departmentCode != null  and departmentCode != ''  ">DepartmentCode,</if>-->
+    <!--<if test="courseId != null  and courseId != ''  ">CourseId,</if>-->
+    <!--<if test="courseCode != null  and courseCode != ''  ">CourseCode,</if>-->
+    <!--<if test="courseName != null  and courseName != ''  ">CourseName,</if>-->
+    <!--<if test="moduleId != null  and moduleId != ''  ">ModuleId,</if>-->
+    <!--<if test="syllabusId != null  and syllabusId != ''  ">SyllabusId,</if>-->
+    <!--<if test="activityId != null  and activityId != ''  ">ActivityId,</if>-->
+    <!--<if test="duration != null  and duration != ''  ">Duration,</if>-->
+    <!--<if test="isMobile != null  and isMobile != ''  ">IsMobile,</if>-->
+    <!--<if test="isTeacher != null  and isTeacher != ''  ">IsTeacher,</if>-->
+    <!--<if test="actionType != null  and actionType != ''  ">ActionType,</if>-->
+    <!--<if test="uploadId != null  and uploadId != ''  ">UploadId,</if>-->
+    <!--<if test="startTime != null  and startTime != ''  ">StartTime,</if>-->
+    <!--<if test="endTime != null  and endTime != ''  ">EndTime,</if>-->
+    <!--<if test="createTime != null  and createTime != ''  ">CreateTime,</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null  and id != ''  ">#{id},</if>-->
+    <!--<if test="userNumber != null  and userNumber != ''  ">#{userNumber},</if>-->
+    <!--<if test="userCode != null  and userCode != ''  ">#{userCode},</if>-->
+    <!--<if test="organizationId != null  and organizationId != ''  ">#{organizationId},</if>-->
+    <!--<if test="organizationCode != null  and organizationCode != ''  ">#{organizationCode},</if>-->
+    <!--<if test="departmentId != null  and departmentId != ''  ">#{departmentId},</if>-->
+    <!--<if test="departmentCode != null  and departmentCode != ''  ">#{departmentCode},</if>-->
+    <!--<if test="courseId != null  and courseId != ''  ">#{courseId},</if>-->
+    <!--<if test="courseCode != null  and courseCode != ''  ">#{courseCode},</if>-->
+    <!--<if test="courseName != null  and courseName != ''  ">#{courseName},</if>-->
+    <!--<if test="moduleId != null  and moduleId != ''  ">#{moduleId},</if>-->
+    <!--<if test="syllabusId != null  and syllabusId != ''  ">#{syllabusId},</if>-->
+    <!--<if test="activityId != null  and activityId != ''  ">#{activityId},</if>-->
+    <!--<if test="duration != null  and duration != ''  ">#{duration},</if>-->
+    <!--<if test="isMobile != null  and isMobile != ''  ">#{isMobile},</if>-->
+    <!--<if test="isTeacher != null  and isTeacher != ''  ">#{isTeacher},</if>-->
+    <!--<if test="actionType != null  and actionType != ''  ">#{actionType},</if>-->
+    <!--<if test="uploadId != null  and uploadId != ''  ">#{uploadId},</if>-->
+    <!--<if test="startTime != null  and startTime != ''  ">#{startTime},</if>-->
+    <!--<if test="endTime != null  and endTime != ''  ">#{endTime},</if>-->
+    <!--<if test="createTime != null  and createTime != ''  ">#{createTime},</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+
+    <!--<update id="updateDwiPlaybackRecordVideoResources" parameterType="DwiPlaybackRecordVideoResources">-->
+    <!--update dwi_playback_record_video_resources-->
+    <!--<trim prefix="SET" suffixOverrides=",">-->
+    <!--<if test="userNumber != null  and userNumber != ''  ">UserNumber = #{userNumber},</if>-->
+    <!--<if test="userCode != null  and userCode != ''  ">UserCode = #{userCode},</if>-->
+    <!--<if test="organizationId != null  and organizationId != ''  ">OrganizationId = #{organizationId},</if>-->
+    <!--<if test="organizationCode != null  and organizationCode != ''  ">OrganizationCode = #{organizationCode},-->
+    <!--</if>-->
+    <!--<if test="departmentId != null  and departmentId != ''  ">DepartmentId = #{departmentId},</if>-->
+    <!--<if test="departmentCode != null  and departmentCode != ''  ">DepartmentCode = #{departmentCode},</if>-->
+    <!--<if test="courseId != null  and courseId != ''  ">CourseId = #{courseId},</if>-->
+    <!--<if test="courseCode != null  and courseCode != ''  ">CourseCode = #{courseCode},</if>-->
+    <!--<if test="courseName != null  and courseName != ''  ">CourseName = #{courseName},</if>-->
+    <!--<if test="moduleId != null  and moduleId != ''  ">ModuleId = #{moduleId},</if>-->
+    <!--<if test="syllabusId != null  and syllabusId != ''  ">SyllabusId = #{syllabusId},</if>-->
+    <!--<if test="activityId != null  and activityId != ''  ">ActivityId = #{activityId},</if>-->
+    <!--<if test="duration != null  and duration != ''  ">Duration = #{duration},</if>-->
+    <!--<if test="isMobile != null  and isMobile != ''  ">IsMobile = #{isMobile},</if>-->
+    <!--<if test="isTeacher != null  and isTeacher != ''  ">IsTeacher = #{isTeacher},</if>-->
+    <!--<if test="actionType != null  and actionType != ''  ">ActionType = #{actionType},</if>-->
+    <!--<if test="uploadId != null  and uploadId != ''  ">UploadId = #{uploadId},</if>-->
+    <!--<if test="startTime != null  and startTime != ''  ">StartTime = #{startTime},</if>-->
+    <!--<if test="endTime != null  and endTime != ''  ">EndTime = #{endTime},</if>-->
+    <!--<if test="createTime != null  and createTime != ''  ">CreateTime = #{createTime},</if>-->
+    <!--</trim>-->
+    <!--where Id = #{id}-->
+    <!--</update>-->
+
+
+    <!---->
+
+
+    <!--<delete id="deleteDwiPlaybackRecordVideoResourcesById" parameterType="String">-->
+    <!--delete from dwi_playback_record_video_resources where Id = #{id}-->
+    <!--</delete>-->
+
+    <!--<delete id="deleteDwiPlaybackRecordVideoResourcesByIds" parameterType="String">-->
+    <!--delete from dwi_playback_record_video_resources where Id in-->
+    <!--<foreach item="id" collection="array" open="(" separator="," close=")">-->
+    <!--#{id}-->
+    <!--</foreach>-->
+    <!--</delete>-->
+
+    <insert id="batchInsert">
+        insert into dwi_playback_record_video_resources(UserNumber, UserCode, OrganizationId, OrganizationCode,
+        DepartmentId, DepartmentCode, CourseId, CourseCode, CourseName, ModuleId, SyllabusId,
+        ActivityId, Duration, IsMobile, IsTeacher, ActionType, UploadId, StartTime, EndTime, CreateTime) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.userNumber},#{item.userCode},#{item.organizationId},#{item.organizationCode},#{item.departmentId},#{item.departmentCode},
+            #{item.courseId},#{item.courseCode},#{item.courseName},#{item.moduleId}
+            ,#{item.syllabusId},#{item.activityId},#{item.duration},#{item.isMobile},#{item.isTeacher},#{item.actionType},#{item.uploadId},
+            #{item.startTime},#{item.endTime},#{item.createdAt}
+            )
+        </foreach>
+    </insert>
+
+
+    <!-- 统计用户id观看所有视频总时长 -->
+    <select id="query_study_total_duration" resultType="com.gcc.pojo.StudyTotalDuration">
+        select
+            usernumber student_id,
+            sum(Duration)/ 60 total_hours,
+            sum(Duration) total_minutes
+            from
+            dwi_playback_record_video_resources
+            group by
+            usernumber
+    </select>
+
+    <insert id="sync_study_total_duration">
+        delete from study_total_duration;
+        insert into study_total_duration(student_id, total_hours, total_minutes)
+        select
+            UserCode student_id,
+            sum(Duration)/ 60 total_hours,
+            sum(Duration) total_minutes
+        from
+            dwi_playback_record_video_resources
+        group by
+            usernumber
+        ;
+
+    </insert>
+
+    <insert id="sync_student_course_score">
+        delete from student_course_score;
+        replace into student_course_score(exam_id, student_id, course_id, score, exam_name, exam_times, avgscore)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.examId},#{item.studentId},#{item.courseId},#{item.score},
+            #{item.examName},#{item.examTimes},
+            #{item.avgscore}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="sync_student_course_count_score">
+        delete from student_course_count_score;
+        insert into student_course_count_score(student_id,count_score)
+        select student_id,avg(score) count_score from student_course_score group by student_id;
+
+    </insert>
+
+    <insert id="sync_user_personal_data">
+        replace into user_personal_data(student_id, user_name, user_gender, age, nationality, `degree`,
+        political_status, graduate_institutions, former_major, enrollmnent_data, education_background,
+        major_admission, student_status, phone_number, e_mail, institutional_framework)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.userName},#{item.userGender},#{item.age},#{item.nationality},#{item.degree},
+            #{item.politicalStatus},#{item.graduateInstitutions},#{item.formerMajor},#{item.enrollmnentData},#{item.educationBackground},
+            #{item.majorAdmission},
+            #{item.studentStatus},#{item.phoneNumber},#{item.eMail},#{item.institutionalFramework}
+            )
+        </foreach>
+
+    </insert>
+
+    <insert id="syncTeacherCommentScore">
+        replace into teacher_comment_score(student_id, instructor_comment, comment_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.instructorComment},#{item.commentScore}
+            )
+        </foreach>
+
+    </insert>
+
+
+    <select id="queryLearningCount" resultType="com.gcc.pojo.vo.VitalityVO">
+
+        select UserNumber student_id ,count(1)*0.5 cnt from dwi_learning_activitys
+        where ActivityEnrollmentRole ='student'
+        group by UserNumber order by count(1)*0.5 desc
+    </select>
+
+    <insert id="syncStudentTotalProgress">
+        replace into student_total_progress(student_id,study_total_progress)
+        select student_id,avg(study_progress) student_progress from student_progress group by student_id;
+
+    </insert>
+
+    <insert id="syncStudyEngagement">
+        replace into study_total_engagement(student_id,total_engagement_score)
+        select student_id,avg(engagement_score) total_engagement_score from study_engagement group by student_id;
+
+    </insert>
+
+    <insert id="syncStudyAbility">
+        replace into study_ability(student_id, course_id, ability_score, avg_ability_score)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.abilityScore},#{item.avgAbilityScore}
+            )
+        </foreach>
+
+    </insert>
+
+    <!-- 词云需处理 todo -->
+    <insert id="syncUserWordcloud1">
+        replace into user_wordcloud1(user_id, study_total_progress_wordcloud, count_score_wordcloud)
+        values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.instructorComment},#{item.commentScore}
+            )
+        </foreach>
+    </insert>
+
+
+    <select id="queryCloudWords" resultType="com.gcc.pojo.WordcloudJudgment">
+        select * from wordcloud_judgment
+    </select>
+
+</mapper>

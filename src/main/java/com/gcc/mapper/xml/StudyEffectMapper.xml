@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyEffectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyEffect">
+        <id column="student_id" property="studentId" />
+        <result column="course_id" property="courseId" />
+        <result column="performance_score" property="performanceScore" />
+        <result column="avg_performance_score" property="avgPerformanceScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, performance_score, avg_performance_score
+    </sql>
+    <select id="getEffectByUserId" resultType="com.gcc.pojo.StudyEffect">
+        select * from `study_effect` where student_id=#{student_id} and course_id=#{course_id}
+    </select>
+</mapper>

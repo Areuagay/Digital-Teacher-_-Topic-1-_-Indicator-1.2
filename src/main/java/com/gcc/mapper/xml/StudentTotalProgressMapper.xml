@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudentTotalProgressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudentTotalProgress">
+        <id column="student_id" property="studentId" />
+        <result column="study_total_progress" property="studyTotalProgress" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, study_total_progress
+    </sql>
+    <select id="getTotalProgressyByUserId" resultType="com.gcc.pojo.StudentTotalProgress">
+        select * from `student_total_progress` where student_id=#{student_id}
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.KnowledgeComplicationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.KnowledgeComplication">
+        <id column="student_id" property="studentId" />
+        <result column="course_id" property="courseId" />
+        <result column="knowledge_score" property="knowledgeScore" />
+        <result column="avg_knowledge_score" property="avgKnowledgeScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, course_id, knowledge_score, avg_knowledge_score
+    </sql>
+    <select id="queryById" resultType="com.gcc.pojo.KnowledgeComplication">
+        select *
+        from `knowledge_complication`
+        where student_id = #{student_id}
+          and course_id = #{course_id}
+    </select>
+
+    <insert id="batchInsert">
+--         delete from knowledge_complication;
+        replace into knowledge_complication(student_id, course_id, knowledge_score, avg_knowledge_score) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.studentId},#{item.courseId},#{item.knowledgeScore},#{item.avgKnowledgeScore}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

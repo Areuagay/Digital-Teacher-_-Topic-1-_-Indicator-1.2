@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.TeacherCommentScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.TeacherCommentScore">
+        <id column="student_id" property="studentId" />
+        <result column="instructor_comment" property="instructorComment" />
+        <result column="comment_score" property="commentScore" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, instructor_comment, comment_score
+    </sql>
+    <select id="getCommentById" resultType="com.gcc.pojo.TeacherCommentScore">
+        select * from `teacher_comment_score` where student_id=#{student_id}
+    </select>
+</mapper>

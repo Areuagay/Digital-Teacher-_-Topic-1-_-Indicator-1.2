@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.mapper.StudyTotalDurationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gcc.pojo.StudyTotalDuration">
+        <id column="student_id" property="studentId" />
+        <result column="total_hours" property="totalHours" />
+        <result column="total_minutes" property="totalMinutes" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, total_hours, total_minutes
+    </sql>
+    <select id="getTotalDurationByUserId" resultType="com.gcc.pojo.StudyTotalDuration">
+        select * from `study_total_duration` where student_id=#{student_id}
+    </select>
+</mapper>
